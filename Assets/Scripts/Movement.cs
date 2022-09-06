@@ -20,23 +20,31 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
         rb2d.velocity = new Vector2(moveX * speed, moveY * speed);
 
-
     }
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag=="Obstacle")
             {
             rb2d.transform.position = originalPos;
-            Wait();
+            StartCoroutine(Wait());
+
         }
+        
     }
-    IEnumerator Wait()
+
+    
+
+    public IEnumerator Wait()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(7f);
+        
     }
 }
