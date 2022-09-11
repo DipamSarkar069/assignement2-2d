@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     public float speed = 10f;
     private Vector2 originalPos;
 
+    public GameManager gameManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,13 @@ public class Movement : MonoBehaviour
         
     }
 
-    
+    private void OnTriggerEnter2d(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="Win")
+        gameManager.GameOver();
+    }
+
+
 
     public IEnumerator Wait()
     {
